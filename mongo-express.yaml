@@ -22,7 +22,7 @@ spec:
           # - Each init container must complete successfully before the next one starts.
       containers:
       - name: mongo-express
-        image: mongo-express
+        image: mongo-express:0.42.2
         ports:
         - containerPort: 8081
         env:
@@ -37,7 +37,4 @@ spec:
               name: mongodb-secret
               key: mongo-root-password
         - name: ME_CONFIG_MONGODB_SERVER
-          valueFrom:
-            configMapKeyRef:
-              name: mongo-express-configmap
-              key: database-url
+          value: mongodb-service
